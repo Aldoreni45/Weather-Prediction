@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to bottom right, #1e1e2f, #4b0082);
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #ffccff;
+            text-shadow: 2px 2px 5px #000000;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            width: 400px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: scaleUp 0.7s ease-in-out;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(to right, #ff00ff, #ff6600);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Weather Prediction</h1>
+        <form action="/" method="post">
+            <input type="text" placeholder="Precipitation (e.g., 10)" name="Precipitation" required>
+            <input type="text" placeholder="Max Temperature (°C)" name="Temperature_max" required>
+            <input type="text" placeholder="Min Temperature (°C)" name="Temperature_min" required>
+            <input type="text" placeholder="Wind Speed (km/h)" name="Wind" required>
+            <button type="submit">Generate Prediction</button>
+        </form>
+        <div id="result">
+            {% if prediction_text %}
+            <p>{{ prediction_text }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
